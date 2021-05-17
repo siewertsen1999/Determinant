@@ -28,15 +28,12 @@ public class testDet {
         det.nrOfMult = 0;
         System.out.println("normal: det(A) = "+det.calcDet(A));
         System.out.println("recursive det(A) = "+det.calcDetRekursiv(A));
-        //es faellt auf, dass die anzahl an multiplikationen expotentiell steigt,
-        //da die vergroesserung der matrix bedeutet, dass alle operationen wie vorher
-        //ausgefuehrt werden + 1 neue die auch merh multiplikationen benoetigt
         System.out.println("Anzahl der Multiplikationen: "+det.nrOfMult);
         System.out.println("Anzahl der Divisionen: "+det.nrOfDiv);
 
     }
 
-    //Liest die quadratische Matrix aus einer Textdatei; s. Programmieraufgaben.pdf bezüglich des Formats.
+    
     public static double[][] readMatrixFromFile(String filename){
         ArrayList<String> stringList = new ArrayList<String>();
         try{
@@ -63,24 +60,21 @@ public class testDet {
         }
     }
 
-    //Schreibt die Matrix M in die Konsole; die Koeffizienten werden auf nrOfDigits Stellen gerundet. 
+   
     public void showMatrix(double[][] M, int nrOfDigits){
         int m = M.length;
         int n = M[0].length;
-        //boolean hasNoNegativeEntry = true;
         double max = 0.0;
         for (int j=0; j<n; j++){
             for (int i=0; i<m; i++){
                 if (M[i][j]>max) max = M[i][j];
-                //if (M[i][j]<0.0) hasNoNegativeEntry = false; 
-            }
+               }
         }
         int l;
         if (max==0) l = 5;
-        else l = (int) Math.log10(Math.abs(max))+nrOfDigits+5;//+1: log, +1: sign, +1: point, +1
+        else l = (int) Math.log10(Math.abs(max))+nrOfDigits+5;
         if (nrOfDigits==0) l--;
-        //if (hasNoNegativeEntry) l--;
-
+       
         String f, s;
         f = "%"+l+"."+nrOfDigits+"f";
         for (int i=0; i<m; i++){
